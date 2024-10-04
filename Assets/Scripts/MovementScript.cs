@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Tweens;
 
 public class MovementScript : MonoBehaviour
 {
@@ -86,11 +85,12 @@ public class MovementScript : MonoBehaviour
     }
 
     public void TeleportTo(Vector3 target) {
+    	transform.position = target;
 		rb.velocity = Vector3.zero;
-        var tween = new PositionTween {
-            to = target,
-            duration = 0.25f
-        };
-        player.AddTween(tween);
+        /* var tween = new PositionTween { */
+            /* to = target, */
+            /* duration = 0.25f */
+        /* }; */
+        /* player.AddTween(tween); */
     }
 }

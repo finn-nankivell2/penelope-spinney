@@ -24,9 +24,9 @@ public class CameraTeleport : MonoBehaviour
 
     public void TeleportDestRaycast() {
         RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
 
-        if (Physics.Raycast(ray, out hit, 1000f, teleportMask)) {
+        if (Physics.Raycast(ray, out hit, 10000f, teleportMask, QueryTriggerInteraction.Collide)) {
             Transform objectHit = hit.transform;
             player.GetComponent<MovementScript>().TeleportTo(hit.transform.position);
         }
