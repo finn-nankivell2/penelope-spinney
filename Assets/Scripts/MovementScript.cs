@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tweens;
 
 public class MovementScript : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class MovementScript : MonoBehaviour
 	[Header("Ground Check")]
 	public float playerHeight;
 	public LayerMask whatIsGround;
+	public GameObject player;
 	bool grounded;
 
 	public Transform orientation;
@@ -81,12 +83,14 @@ public class MovementScript : MonoBehaviour
     	jumpStorage = false;
 		rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 		rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
 
-		// Teleport shift
-		if (Input.GetKey(KeyCode.LeftShift)) {
-			var md = this.calcMoveDirection();
-			rb.AddForce(md.normalized * moveSpeed * 1500f, ForceMode.Force);
-		}
-
+    public void TeleportTo(Vector3 target) {
+		rb.velocity = Vector3.zero;
+        var tween = new PositionTween {
+            to = target,
+            duration = 0.25f
+        };
+        player.AddTween(tween);
     }
 }

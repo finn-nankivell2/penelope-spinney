@@ -142,6 +142,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.toolchain.win-x86_64-linux-x86_64": {
+      "version": "2.0.9",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.sysroot": "2.0.10",
+        "com.unity.sysroot.linux-x86_64": "2.0.9"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ugui": {
       "version": "1.0.0",
       "depth": 0,
@@ -160,6 +170,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "nl.jeffreylanters.tweens": {
+      "version": "git+https://github.com/jeffreylanters/unity-tweens",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a9a39fe9d4e8ff8ef655bfcee2912f7af8fa1e90"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
