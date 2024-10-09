@@ -8,6 +8,8 @@ public class CameraTeleport : MonoBehaviour
     private Camera cam;
     public GameObject player;
 
+    private bool queueTeleportRequest = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,23 @@ public class CameraTeleport : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            TeleportDestRaycast();
+            queueTeleportRequest = true;
         }
+    }
+
+    void FixedUpdate(){
+        if (queueTeleportRequest)
+        {
+            TeleportDestRaycast();
+            queueTeleportRequest = false;
+        }
+
+    }
+
+    public bool IsRayCastHit() {
+        RaycastHit hit;
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+        return Physics.Raycast(ray, out hit, 10000f, teleportMask, QueryTriggerInteraction.Collide);
     }
 
     public void TeleportDestRaycast() {
@@ -27,8 +44,11 @@ public class CameraTeleport : MonoBehaviour
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
 
         if (Physics.Raycast(ray, out hit, 10000f, teleportMask, QueryTriggerInteraction.Collide)) {
-            Transform objectHit = hit.transform;
-            player.GetComponent<MovementScript>().TeleportTo(hit.transform.position);
+            var pos = hit.transform.position;
+            Debug.Log("Pos: " + pos);
+            player.GetComponent<MovementScript>().TeleportTo(pos);
+
+            // Destroy(hit.transform.gameObject);
         }
     }
 }

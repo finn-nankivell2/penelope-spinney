@@ -73,7 +73,6 @@ public class MovementScript : MonoBehaviour
 		var forceToAdd = moveDirection.normalized * moveSpeed * 10f;
 		forceToAdd *= (grounded) ? 1f : airMultiplier;
 		rb.AddForce(forceToAdd, ForceMode.Force);
-
 		rb.AddForce(Physics.gravity, ForceMode.Acceleration);
 
     }
@@ -85,12 +84,7 @@ public class MovementScript : MonoBehaviour
     }
 
     public void TeleportTo(Vector3 target) {
-    	transform.position = target;
 		rb.velocity = Vector3.zero;
-        /* var tween = new PositionTween { */
-            /* to = target, */
-            /* duration = 0.25f */
-        /* }; */
-        /* player.AddTween(tween); */
+    	transform.position = new Vector3(target.x, target.y, target.z);
     }
 }
