@@ -84,7 +84,7 @@ public class MovementScript : MonoBehaviour
     }
 
     public void TeleportTo(Vector3 target) {
-		rb.velocity = Vector3.zero;
+		rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
     	transform.position = new Vector3(target.x, target.y, target.z);
     }
 }

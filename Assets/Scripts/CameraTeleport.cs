@@ -52,7 +52,7 @@ public class CameraTeleport : MonoBehaviour
             Debug.Log("Pos: " + pos);
             player.GetComponent<MovementScript>().TeleportTo(pos);
 
-            orbBehaviour.isCharged = false;
+            orbBehaviour.UseCharge();
         }
     }
 }

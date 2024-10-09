@@ -38,10 +38,12 @@ public class FPSScript : MonoBehaviour
 
 		if (Input.GetMouseButton(1)) {
 			GetComponent<Camera>().fieldOfView = 40;
+			Time.timeScale = 0.5f;
 		}
 
 		else {
 			GetComponent<Camera>().fieldOfView = startingFOV;
+			Time.timeScale = 1.0f;
 		}
     }
 }

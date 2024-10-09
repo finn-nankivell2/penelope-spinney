@@ -6,6 +6,7 @@ public class OrbBehaviour : MonoBehaviour
 {
     public float opacityAmt = 0.5f;
     public bool isCharged = true;
+    public float chargeCountdown = 3f;
     private Renderer myRenderer;
 
     // Start is called before the first frame update
@@ -22,5 +23,14 @@ public class OrbBehaviour : MonoBehaviour
         myRenderer.material.color = new Color(col.r, col.g, col.b, amt);
 
         transform.Rotate(new Vector3(0f, 150f * Time.deltaTime, 0f ));
+    }
+
+    public void GainCharge() {
+        isCharged = true;
+    }
+
+    public void UseCharge() {
+        isCharged = false;
+        Invoke(nameof(GainCharge), chargeCountdown);
     }
 }
