@@ -49,10 +49,9 @@ public class CameraTeleport : MonoBehaviour
             if (!orbBehaviour.isCharged) { return; }
 
             var pos = hit.transform.position;
-            Debug.Log("Pos: " + pos);
             player.GetComponent<MovementScript>().TeleportTo(pos);
-
             orbBehaviour.UseCharge();
+            cam.fieldOfView = gameObject.GetComponent<FPSScript>().startingFOV;
         }
     }
 }

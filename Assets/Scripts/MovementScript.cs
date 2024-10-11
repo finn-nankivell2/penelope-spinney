@@ -8,10 +8,14 @@ public class MovementScript : MonoBehaviour
 	public float moveSpeed;
 	public float groundDrag;
 
+	[Header("Jumping")]
 	public float jumpForce;
 	public float jumpCooldown;
 	public float airMultiplier;
-	bool jumpStorage = false;
+	float jumpStorage = 0;
+	
+	[Range(0, 100)]
+	public float jumpStorageAmt = 100f;
 
 	[Header("Keybindings")]
 	public KeyCode jumpKey = KeyCode.Space;
@@ -43,7 +47,7 @@ public class MovementScript : MonoBehaviour
 		verticalInput = Input.GetAxisRaw("Vertical");
 
 		if (Input.GetKeyDown(jumpKey)) {
-			jumpStorage = true;
+			jumpStorage = jumpStorageAmt;
 		}
 
 		// Check if currently grounded and apply drag
@@ -58,8 +62,12 @@ public class MovementScript : MonoBehaviour
 			rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
 		}
 
-		if (jumpStorage && grounded) {
-			Jump();
+		if (jumpStorage > 0.0) {
+			jumpStorage -= 100f * Time.deltaTime;
+			
+			if (grounded) {
+				Jump();
+			}
 		}
     }
 
@@ -70,15 +78,15 @@ public class MovementScript : MonoBehaviour
     void FixedUpdate() {
 		// Move player
 		moveDirection = this.calcMoveDirection();
-		var forceToAdd = moveDirection.normalized * moveSpeed * 10f;
-		forceToAdd *= (grounded) ? 1f : airMultiplier;
+		Vector3 forceToAdd;
+		forceToAdd = moveDirection.normalized * moveSpeed * 10f;
 		rb.AddForce(forceToAdd, ForceMode.Force);
-		rb.AddForce(Physics.gravity, ForceMode.Acceleration);
+		rb.AddForce(Physics.gravity*1.5f, ForceMode.Acceleration);
 
     }
 
     void Jump() {
-    	jumpStorage = false;
+    	jumpStorage = 0.0f;
 		rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 		rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }

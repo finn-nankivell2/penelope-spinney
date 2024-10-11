@@ -12,8 +12,11 @@ public class FPSScript : MonoBehaviour
 	private float camRotX;
 	private float camRotY;
 
-	private float startingFOV;
+	private Camera cam;
 
+	public float startingFOV;
+	public float FOVChangeRate = 0.1f;
+	private float targetFov;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,8 @@ public class FPSScript : MonoBehaviour
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 		startingFOV = GetComponent<Camera>().fieldOfView;
+		targetFov = startingFOV;
+		cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -37,13 +42,21 @@ public class FPSScript : MonoBehaviour
 		orientation.rotation = Quaternion.Euler(0, camRotY, 0);
 
 		if (Input.GetMouseButton(1)) {
-			GetComponent<Camera>().fieldOfView = 40;
-			Time.timeScale = 0.5f;
+			if (Input.GetMouseButtonDown(1)) {
+				SetTargetFOV(startingFOV/2);
+			}
 		}
 
 		else {
-			GetComponent<Camera>().fieldOfView = startingFOV;
-			Time.timeScale = 1.0f;
+			SetTargetFOV(startingFOV);
 		}
+
+		cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, targetFov, FOVChangeRate * Time.deltaTime);
+		Debug.Log(targetFov);
+
     }
+
+	public void SetTargetFOV(float target) {
+		targetFov = target;
+	}
 }
