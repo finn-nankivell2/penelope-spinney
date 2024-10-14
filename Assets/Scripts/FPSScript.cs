@@ -42,9 +42,7 @@ public class FPSScript : MonoBehaviour
 		orientation.rotation = Quaternion.Euler(0, camRotY, 0);
 
 		if (Input.GetMouseButton(1)) {
-			if (Input.GetMouseButtonDown(1)) {
-				SetTargetFOV(startingFOV/2);
-			}
+			SetTargetFOV(startingFOV/2);
 		}
 
 		else {
