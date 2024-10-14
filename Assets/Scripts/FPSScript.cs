@@ -52,7 +52,6 @@ public class FPSScript : MonoBehaviour
 		}
 
 		cam.fieldOfView = Mathf.MoveTowards(cam.fieldOfView, targetFov, FOVChangeRate * Time.deltaTime);
-		Debug.Log(targetFov);
 
     }
 
