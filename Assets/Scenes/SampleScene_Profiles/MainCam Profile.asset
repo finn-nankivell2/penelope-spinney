@@ -18,18 +18,18 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: -60
+    value: 55
   intensityX:
     overrideState: 1
-    value: 1
+    value: 0.75
   intensityY:
-    overrideState: 1
+    overrideState: 0
     value: 1
   centerX:
-    overrideState: 0
+    overrideState: 1
     value: 0
   centerY:
-    overrideState: 0
+    overrideState: 1
     value: 0
   scale:
     overrideState: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 5
+    value: 0.3
   threshold:
     overrideState: 1
     value: 0.4
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
   m_Name: Grain
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
