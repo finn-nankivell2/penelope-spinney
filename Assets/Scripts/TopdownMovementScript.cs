@@ -20,9 +20,9 @@ public class TopdownMovementScript : MonoBehaviour
 
 	[Header("Camera")]
 	public bool shouldCameraFollow = true;
+	public float cameraFollowSpeed = 50f;
 	public Vector3 cameraOffset = Vector3.zero;
 	public Transform cam;
-
 	private Rigidbody rb;
 
 	[Header("SlopeHandling")]
@@ -73,8 +73,10 @@ public class TopdownMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (shouldCameraFollow)
-			cam.position = transform.position + cameraOffset;
+		if (shouldCameraFollow) {
+			Vector3 target = transform.position + cameraOffset;
+			cam.position = Vector3.MoveTowards(cam.position, target, cameraFollowSpeed * (Vector3.Distance(cam.position, target) * 0.01f) * Time.deltaTime);
+		}
 
 		modelTransform.forward = lastMoveDir;
 
@@ -88,6 +90,10 @@ public class TopdownMovementScript : MonoBehaviour
 
 		else {
 			modelAnimation.Play("walk_cycle");
+		}
+
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			shouldCameraFollow = !shouldCameraFollow;
 		}
     }
 }
