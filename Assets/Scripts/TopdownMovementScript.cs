@@ -19,6 +19,7 @@ public class TopdownMovementScript : MonoBehaviour
 	private Animation modelAnimation;
 
 	[Header("Camera")]
+	public bool shouldCameraFollow = true;
 	public Vector3 cameraOffset = Vector3.zero;
 	public Transform cam;
 
@@ -72,7 +73,9 @@ public class TopdownMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		cam.position = transform.position + cameraOffset;
+		if (shouldCameraFollow)
+			cam.position = transform.position + cameraOffset;
+
 		modelTransform.forward = lastMoveDir;
 
 		if (GetMoveDirection().magnitude <= walkAnimationTransitionLength) {
