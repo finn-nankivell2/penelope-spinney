@@ -5,8 +5,7 @@ using UnityEngine;
 public class TopdownMovementScript : MonoBehaviour
 {
 	[Header("Movement")]
-	public float speed = 100f;
-	public float runSpeed = 100f;
+	public float speed = 100f; public float runSpeed = 100f;
 	public float groundDrag = 7f;
 
 	private Vector3 lastMoveDir = Vector3.back;
@@ -22,6 +21,7 @@ public class TopdownMovementScript : MonoBehaviour
 	public bool shouldCameraFollow = true;
 	public float cameraFollowSpeed = 50f;
 	public Vector3 cameraOffset = Vector3.zero;
+
 	public Transform cam;
 	private Rigidbody rb;
 
