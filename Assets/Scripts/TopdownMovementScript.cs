@@ -19,7 +19,7 @@ public class TopdownMovementScript : MonoBehaviour
 
 	[Header("Camera")]
 	public bool shouldCameraFollow = true;
-	public float cameraFollowSpeed = 50f;
+	public float cameraFollowSpeed = 500f;
 	public Vector3 cameraOffset = Vector3.zero;
 
 	public Transform cam;
