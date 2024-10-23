@@ -8,7 +8,7 @@ public class TopdownMovementScript : MonoBehaviour
 	public float speed = 100f; public float runSpeed = 100f;
 	public float groundDrag = 7f;
 
-	private Vector3 lastMoveDir = Vector3.right;
+	private Vector3 lastMoveDir = Vector3.left;
 
 	[Header("Animation")]
 	public float walkAnimationTransitionLength = 0.2f;
@@ -92,8 +92,8 @@ public class TopdownMovementScript : MonoBehaviour
 			modelAnimation.Play("walk_cycle");
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			shouldCameraFollow = !shouldCameraFollow;
-		}
+		/* if (Input.GetKeyDown(KeyCode.Space)) { */
+		/* 	shouldCameraFollow = !shouldCameraFollow; */
+		/* } */
     }
 }
