@@ -8,7 +8,7 @@ public class TopdownMovementScript : MonoBehaviour
 	public float speed = 100f; public float runSpeed = 100f;
 	public float groundDrag = 7f;
 
-	private Vector3 lastMoveDir = Vector3.back;
+	private Vector3 lastMoveDir = Vector3.right;
 
 	[Header("Animation")]
 	public float walkAnimationTransitionLength = 0.2f;
