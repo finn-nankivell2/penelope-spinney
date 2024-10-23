@@ -9,6 +9,7 @@ public class DoorScript : MonoBehaviour
 	private bool playerWithinRange = false;
 	public Image uiConfirmPrompt;
 	public string sceneToLoadName;
+	public Transform player;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,10 @@ public class DoorScript : MonoBehaviour
     void Update()
     {
 		if (playerWithinRange && Input.GetKeyDown(KeyCode.Space)) {
-			Debug.Log("Loading house");
 			SceneManager.LoadScene(sceneToLoadName);
+			if (player && SceneManager.GetActiveScene().name == "MeadowScene") {
+				StateScript.playerMeadowPos = player.position;
+			}
 		}
 
     }

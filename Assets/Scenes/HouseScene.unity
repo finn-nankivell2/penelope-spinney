@@ -1253,6 +1253,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20bc787ec8142e37c876cca6aa9c2f0b, type: 3}
+--- !u!4 &1302764383 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6297838214585638139, guid: 20bc787ec8142e37c876cca6aa9c2f0b, type: 3}
+  m_PrefabInstance: {fileID: 1302764382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1410238451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2073,6 +2078,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 8350163488158094937, guid: 0cc21bd3a587486229ee694bdc9165cc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1302764383}
     - target: {fileID: 8350163488158094937, guid: 0cc21bd3a587486229ee694bdc9165cc, type: 3}
       propertyPath: sceneToLoadName
       value: MeadowScene
