@@ -31,6 +31,10 @@ public class TopdownMovementScript : MonoBehaviour
 	public float maxSlopeAngle = 80;
 	private RaycastHit slopeHit;
 
+	[Header("Audio")]
+	public AudioSource walkAudio;
+	public AudioSource itemAudio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -98,15 +102,29 @@ public class TopdownMovementScript : MonoBehaviour
 
 		if (GetMoveDirection().magnitude <= walkAnimationTransitionLength) {
 			modelAnimation.Play("reset");
-		}
-
-		else if (Input.GetKey(KeyCode.LeftShift)) {
-			modelAnimation.Play("run_cycle");
+			if (walkAudio) {
+				walkAudio.Stop();
+			}
 		}
 
 		else {
-			modelAnimation.Play("walk_cycle");
+			if (walkAudio && !walkAudio.isPlaying) {
+				walkAudio.Play();
+			}
+			if (Input.GetKey(KeyCode.LeftShift)) {
+				modelAnimation.Play("run_cycle");
+			}
+
+			else {
+				modelAnimation.Play("walk_cycle");
+			}
 		}
+
+		if (StateScript.playerCollectedItem) {
+			StateScript.playerCollectedItem = false;
+			itemAudio.Play();
+		}
+
 
 		/* if (Input.GetKeyDown(KeyCode.Space)) { */
 		/* 	shouldCameraFollow = !shouldCameraFollow; */

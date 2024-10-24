@@ -29,6 +29,7 @@ public class PickupScript : MonoBehaviour
 
 	void PickupBehaviour() {
 		StateScript.stateMap[pickupID] = true;
+		StateScript.playerCollectedItem = true;
 
 		if (uiIndicator) {
 			uiIndicator.enabled = true;

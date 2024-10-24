@@ -10,6 +10,7 @@ public class StateScript : MonoBehaviour
 	public static Dictionary<string, bool> stateMap;
 
 	private static bool hasSetup = false;
+	public static bool playerCollectedItem = false;
 
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
