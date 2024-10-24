@@ -42,7 +42,6 @@ public class TopdownMovementScript : MonoBehaviour
 
 			else {
 				transform.position = StateScript.playerMeadowPos;
-				Debug.Log(transform.position);
 				Physics.SyncTransforms();
 			}
 		}

@@ -7,13 +7,25 @@ public class StateScript : MonoBehaviour
 	public static Vector3 playerMeadowPos = Vector3.zero;
 	public static bool playerMeadowPosHasBeenSet = false;
 
-	public static bool hasKey = false;
-	public static bool hasRose = false;
-	public static bool hasTulip = false;
-	public static bool hasPoppy = false;
+	public static Dictionary<string, bool> stateMap;
+
+	private static bool hasSetup = false;
 
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
+
+		if (!hasSetup) {
+			SetupOnce();
+			hasSetup = true;
+		}
+	}
+
+	void SetupOnce() {
+		stateMap = new Dictionary<string, bool>();
+		stateMap["key"] = false;
+		stateMap["rose"] = false;
+		stateMap["tulip"] = false;
+		stateMap["poppy"] = false;
 	}
 
     // Start is called before the first frame update

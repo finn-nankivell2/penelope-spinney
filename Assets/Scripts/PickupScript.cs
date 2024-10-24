@@ -1,51 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupScript : MonoBehaviour
 {
 	public string pickupID;
 	public Vector3 rotation = new Vector3(0f, 200f, 0f);
+	public Image uiIndicator;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-		switch (pickupID) {
-			case "key":
-				if (StateScript.hasKey) {
-					Destroy(this.gameObject);
-				}
-				break;
-			case "poppy":
-				if (StateScript.hasPoppy) {
-					Destroy(this.gameObject);
-				}
-				break;
-			case "rose":
-				if (StateScript.hasRose) {
-					Destroy(this.gameObject);
-				}
-				break;
-			case "tulip":
-				if (StateScript.hasTulip) {
-					Destroy(this.gameObject);
-				}
-				break;
-			default: break;
+		if (StateScript.stateMap[pickupID]) {
+			Destroy(this.gameObject);
+
+			if (uiIndicator) {
+				uiIndicator.enabled = true;
+			}
+		}
+
+		else {
+			if (uiIndicator) {
+				uiIndicator.enabled = false;
+			}
 		}
     }
 
 	void PickupBehaviour() {
-		switch (pickupID) {
-			case "key":
-				StateScript.hasKey = true; break;
-			case "poppy":
-				StateScript.hasPoppy = true; break;
-			case "rose":
-				StateScript.hasRose = true; break;
-			case "tulip":
-				StateScript.hasTulip = true; break;
-			default: break;
+		StateScript.stateMap[pickupID] = true;
+
+		if (uiIndicator) {
+			uiIndicator.enabled = true;
 		}
 	}
 
