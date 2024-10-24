@@ -7,6 +7,11 @@ public class StateScript : MonoBehaviour
 	public static Vector3 playerMeadowPos = Vector3.zero;
 	public static bool playerMeadowPosHasBeenSet = false;
 
+	public static bool hasKey = false;
+	public static bool hasRose = false;
+	public static bool hasTulip = false;
+	public static bool hasPoppy = false;
+
 	void Awake() {
 		DontDestroyOnLoad(this.gameObject);
 	}
