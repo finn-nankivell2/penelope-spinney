@@ -10,6 +10,7 @@ public class GraveScript : MonoBehaviour
 	public Transform player;
 	public GameObject flowerBundle;
 	public GameObject flowerMarkers;
+	public BoxCollider doorCollider;
 
 	void Start() {
 		flowerBundle.SetActive(false);
@@ -35,6 +36,7 @@ public class GraveScript : MonoBehaviour
 		flowerBundle.SetActive(true);
 		flowerMarkers.SetActive(false);
 		uiConfirmPrompt.enabled = false;
+		doorCollider.enabled = false;
     }
 
 	void OnTriggerExit(Collider collision) {
